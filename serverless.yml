@@ -30,7 +30,7 @@ functions:
     events:
       - httpApi:
           path: /
-          method: get
+          method: post
   create_business:
     handler: src/create_roofing_contractor.create_roofing_contractor
     events:
