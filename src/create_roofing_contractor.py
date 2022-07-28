@@ -1,11 +1,17 @@
-import json, requests
+import json, requests, os
+
+ppl_api_url = "https://pdh4nvachh.execute-api.us-east-1.amazonaws.com"
+
+if os.environ.get('IS_OFFLINE'):
+    ppl_api_url = "http://localhost:2000"
+
 
 def create_roofing_contractor(event, context):
     email = event.get('email')
     first_name = event.get('first_name') 
     last_name = event.get('last_name')
     phone = event.get('phone')
-    url = "http://localhost:2000/roofer"
+    url = "{ppl_api_url}/roofer"
     payload = {
         "First Name": first_name,
         "Last Name": last_name,
