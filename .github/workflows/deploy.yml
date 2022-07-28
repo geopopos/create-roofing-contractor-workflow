@@ -28,7 +28,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - run: pip install -r requirements.txt
     - name: install sls plugins and deploy
-      run: sls plugin install serverless-python-requirements serverless-lift && sls deploy --stage dev
+      run: python3 --version && sls plugin install -n serverless-python-requirements && sls plugin install -n serverless-lift && sls deploy --stage dev
     # - name: install serverless plugins and serverless deploy
     #   uses: serverless/github-action@v2
     #   with:
