@@ -22,7 +22,7 @@ provider:
             - sqs:SendMessage
             - sqs:GetQueueUrl
             - sqs:ListQueues
-          Resource: arn:aws:sqs:${self:provider.region}:*:${self:service}-${self:provider.stage}-create-business-queue
+          Resource: arn:aws:sqs:us-east-1:906360379090:new-roofing-contractor-workflow-dev-create-business-queue 
 
 functions:
   request_handler:
@@ -34,7 +34,7 @@ functions:
   create_business:
     handler: src/create_roofing_contractor.create_roofing_contractor
     events:
-      - sqs: arn:aws:sqs:${self:provider.region}:*:${self:service}-${self:provider.stage}-create-business-queue
+      - sqs: arn:aws:sqs:us-east-1:906360379090:new-roofing-contractor-workflow-dev-create-business-queue
 
 
 constructs:
