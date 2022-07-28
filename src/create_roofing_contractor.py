@@ -11,7 +11,7 @@ def create_roofing_contractor(event, context):
     first_name = event.get('first_name') 
     last_name = event.get('last_name')
     phone = event.get('phone')
-    url = "{ppl_api_url}/roofer"
+    url = f"{ppl_api_url}/roofer"
     payload = {
         "First Name": first_name,
         "Last Name": last_name,
