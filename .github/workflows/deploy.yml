@@ -21,12 +21,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run:
-      using: 'docker'
-      name: 'serverless deploy'
-      image: 'serverless/serverless:${{ matrix.node-version }}'
-      with:
-        args: -c "python --version && python3 -m pip install -r requirements.txt && serverless plugin install -n serverless-lift && serverless plugin install -n serverless-python-requirements && serverless deploy --verbose"
-        entrypoint: /bin/sh
+        using: 'docker'
+        name: 'serverless deploy'
+        image: 'serverless/serverless:${{ matrix.node-version }}'
+        with:
+          args: -c "python --version && python3 -m pip install -r requirements.txt && serverless plugin install -n serverless-lift && serverless plugin install -n serverless-python-requirements && serverless deploy --verbose"
+          entrypoint: /bin/sh
 
     # - name: install serverless plugins and serverless deploy
     #   uses: serverless/github-action@v2
