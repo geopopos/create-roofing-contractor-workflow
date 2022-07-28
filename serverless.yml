@@ -23,7 +23,7 @@ functions:
           method: get
 
 constructs:
-  create-roofing-contractor-queue:
+  create-business-queue:
     type: queue
     worker:
       handler: src/create_roofing_contractor.create_roofing_contractor
