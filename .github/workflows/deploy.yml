@@ -20,11 +20,19 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - name: install serverless plugins and serverless deploy
-      uses: serverless/github-action@v2
+    - runs:
+      using: 'docker'
+      name: 'serverless deploy'
+      image: 'serverless/serverless:${{ matrix.node-version }}'
       with:
         args: -c "python --version && python3 -m pip install -r requirements.txt && serverless plugin install -n serverless-lift && serverless plugin install -n serverless-python-requirements && serverless deploy --verbose"
         entrypoint: /bin/sh
+
+    # - name: install serverless plugins and serverless deploy
+    #   uses: serverless/github-action@v2
+    #   with:
+    #     args: -c "python --version && python3 -m pip install -r requirements.txt && serverless plugin install -n serverless-lift && serverless plugin install -n serverless-python-requirements && serverless deploy --verbose"
+    #     entrypoint: /bin/sh
       env:
         SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
         # or if using AWS credentials directly
