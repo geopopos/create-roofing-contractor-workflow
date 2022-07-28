@@ -22,7 +22,7 @@ provider:
             - sqs:SendMessage
             - sqs:GetQueueUrl
             - sqs:ListQueues
-          Resource: "arn:aws:sqs:${self:provider.region}:*:${self:service}-${self:provider.stage}-create-business-queue"
+          Resource: arn:aws:sqs:${self:provider.region}:*:${self:service}-${self:provider.stage}-create-business-queue
 
 functions:
   request_handler:
