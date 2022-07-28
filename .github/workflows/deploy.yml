@@ -19,12 +19,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - name: Use Python 3.8
-      uses: actions/setup-python@v3
-      with:
-        python-version: 3.8
     - name: install serverless plugins and serverless deploy
-      uses: serverless/github-action@v3.1
+      uses: serverless/github-action@v3
       with:
         args: -c "python --version && python3 -m pip install -r requirements.txt && serverless plugin install -n serverless-lift && serverless plugin install -n serverless-python-requirements && serverless deploy --verbose"
         entrypoint: /bin/sh
