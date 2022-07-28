@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "serverless-lift": "^1.19.3",
+    "serverless-plugin-lambda-dead-letter": "^1.2.1",
     "serverless-python-requirements": "^5.4.0",
     "serverless-wsgi": "^3.0.0"
   }
