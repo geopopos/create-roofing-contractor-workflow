@@ -6,6 +6,13 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: python3.8
+  stage: dev
+  region: us-east-1
+  profile: serverless-admin
+  timeout: 10
+  memorySize: 128
+  environment:
+    REGION_NAME: ${self:provider.region}
 
 functions:
   create_roofing_contractor:
@@ -14,6 +21,12 @@ functions:
       - httpApi:
           path: /
           method: get
+
+constructs:
+  create-roofing-contractor-queue:
+    type: queue
+    worker:
+      handler: src/create_roofing_contractor.create_roofing_contractor
 
 plugins:
   - serverless-lift
