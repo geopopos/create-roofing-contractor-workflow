@@ -19,6 +19,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+    - name: Set Up Python3.8
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.8
+    - name: Run Python Commands
+      run: |
+        source venv/bin/activate
+        python3 -m pip install -r requirements.txt
     - name: serverless deploy
       uses: serverless/github-action@v3.1
       with:
