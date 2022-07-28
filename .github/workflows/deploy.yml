@@ -20,7 +20,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run:
+    - runs:
         using: 'docker'
         name: 'serverless deploy'
         image: 'serverless/serverless:${{ matrix.node-version }}'
