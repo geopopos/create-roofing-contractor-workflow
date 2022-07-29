@@ -22,4 +22,7 @@ def create_roofing_contractor(event, context):
         'Content-Type': "application/json",
     }
     response = requests.request("POST", url, data=json.dumps(payload), headers=headers)
-    return response.text
+    return {
+          'statusCode': response.status_code,
+          'body': json.dumps(response.json())
+      }
