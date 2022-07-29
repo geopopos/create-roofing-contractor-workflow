@@ -35,7 +35,7 @@ functions:
     handler: src/create_roofing_contractor.create_roofing_contractor
     events:
       - sqs: arn:aws:sqs:us-east-1:906360379090:new-roofing-contractor-workflow-dev-create-business-queue
-  check_if_stripe_customer_exists
+  check_if_stripe_customer_exists:
     handler: src/check_if_stripe_customer_exists.check_if_stripe_customer_exists
     environment:
       STRIPE_TEST_API_KEY: ${param:STRIPE_TEST_API_KEY}
