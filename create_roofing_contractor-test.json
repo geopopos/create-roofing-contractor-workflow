@@ -1,9 +1,6 @@
 {
-    "body":
-        {
-            "email": "george@volumeup.agency",
-            "phone": "1-816-816-8161",
-            "first_name": "George",
-            "last_name": "Perez"
-        }
+    "email": "george@volumeup.agency",
+    "phone": "1-816-816-8161",
+    "first_name": "George",
+    "last_name": "Perez"
 }

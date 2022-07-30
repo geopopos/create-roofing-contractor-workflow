@@ -40,6 +40,8 @@ functions:
     environment:
       STRIPE_TEST_API_KEY: ${param:STRIPE_TEST_API_KEY}
       STRIPE_API_KEY: ${param:STRIPE_API_KEY}
+  echo:
+    hander: src/echo_handler.echo_handler
 
 
 constructs:
