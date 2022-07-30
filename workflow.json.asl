@@ -25,9 +25,9 @@
                     "BackoffRate": 2.0
                 }
             ],
-            "Next": "Echo"
+            "Next": "CheckStripeCustomerExists"
         },
-        "Echo": {
+        "CheckStripeCustomerExists": {
             "Type": "Task",
             "Resource": "arn:aws:lambda:us-east-1:906360379090:function:new-roofing-contractor-workflow-dev-echo",
             "Retry": [

@@ -11,8 +11,7 @@ stripe_api_key = os.environ.get('STRIPE_TEST_API_KEY')
 
 def check_if_stripe_customer_exists(event, context):
     print(event)
-    event_body = json.loads(event.get('body'))
-    customer_email = event_body.get('email')
+    customer_email = event.get('email')
     print("customer_email: " + customer_email)
     # customer_name = event.get('name')
     # customer_phone = event.get('phone')
