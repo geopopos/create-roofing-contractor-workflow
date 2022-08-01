@@ -25,7 +25,22 @@
                     "BackoffRate": 2.0
                 }
             ],
-            "Next": "CheckStripeCustomerExists"
+            "Next": "RooferExistsChoice"
+        },
+        "RooferExistsChoice": {
+            "Type": "Choice",
+            "Choices": [
+                {
+                    "Variable": "$.roofer_exists",
+                    "BooleanEquals": true,
+                    "Next": "SendMessagePublicChannel" 
+                },
+                {
+                    "Variable":"$.roofer_exists",
+                    "BooleanEquals": false,
+                    "Next": "CheckStripeCustomerExists"
+                }
+            ]
         },
         "CheckStripeCustomerExists": {
             "Type": "Task",
@@ -50,6 +65,33 @@
                     "BackoffRate": 2.0
                 }
             ],
+            "Next": "ifCustomerExists"
+        },
+        "ifCustomerExists": {
+            "Type": "Choice",
+            "Choices": [
+                {
+                    "Variable": "$.stripeCustomerExists",
+                    "BooleanEquals": false,
+                    "Next": "CreateStripeCustomer"
+                },
+                {
+                    "Variable": "$.stripeCustomerExists",
+                    "BooleanEquals": true,
+                    "Next": "AddStripeIdToRooferRecord"
+                }
+            ]
+        },
+        "CreateStripeCustomer": {
+            "Type": "Pass",
+            "Next": "AddStripeIdToRooferRecord" 
+        },
+        "AddStripeIdToRooferRecord": {
+            "Type": "Pass",
+            "Next": "SendMessagePublicChannel"
+        },
+        "SendMessagePublicChannel": {
+            "Type": "Pass",
             "End": true
         }
     }
