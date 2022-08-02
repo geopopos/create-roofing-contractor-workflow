@@ -20,15 +20,24 @@ def check_if_stripe_customer_exists(event, context):
     stripe.api_key = stripe_api_key
 
     response = stripe.Customer.list(email=customer_email, limit=1)
+    breakpoint()
     if response['data']:
         return {
             'statusCode': 200,
             'stripeCustomerExists': True,
-            'data': response['data']
+            'data': response['data'],
+            'email': customer_email,
+            'phone': event.get('phone'),
+            'name': event.get('name'),
+            'roofer_id': event.get('roofer_id')
         } 
     else:
         return {
             'statusCode': 404,
-            'stripeCustomerExists': False
+            'stripeCustomerExists': False,
+            'data': response['data'],
+            'email': customer_email,
+            'phone': event.get('phone'),
+            'name': event.get('name'),
+            'roofer_id': event.get('roofer_id')
         }
-    return response["data"]

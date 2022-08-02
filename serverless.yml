@@ -40,6 +40,11 @@ functions:
     environment:
       STRIPE_TEST_API_KEY: ${param:STRIPE_TEST_API_KEY}
       STRIPE_API_KEY: ${param:STRIPE_API_KEY}
+  create_stripe_customer:
+    handler: src/create_stripe_customer.create_stripe_customer
+    environment:
+      STRIPE_TEST_API_KEY: ${param:STRIPE_TEST_API_KEY}
+      STRIPE_API_KEY: ${param:STRIPE_API_KEY}
   echo:
     handler: src/echo_handler.echo_handler
 
