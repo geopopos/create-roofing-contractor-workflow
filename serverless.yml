@@ -47,6 +47,8 @@ functions:
       STRIPE_API_KEY: ${param:STRIPE_API_KEY}
   add_stripe_customer_dynamo:
     handler: src/add_stripe_customer_dynamo.add_stripe_customer_dynamo
+  send_slack_message:
+    handler: src/send_slack_message.send_slack_message
   echo:
     handler: src/echo_handler.echo_handler
 

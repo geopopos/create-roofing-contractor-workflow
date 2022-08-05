@@ -84,7 +84,7 @@
         },
         "CreateStripeCustomer": {
             "Type": "Task",
-            "Resource": "arn:aws:lambda:us-east-1:906360379090:function:new-roofing-contractor-workflow-dev-has_stripe_customer",
+            "Resource": "arn:aws:lambda:us-east-1:906360379090:function:create-stripe-customer-dev-createStripeCustomer",
             "Retry": [
                 {
                     "ErrorEquals": ["CustomError"],
