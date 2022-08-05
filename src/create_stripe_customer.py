@@ -26,10 +26,11 @@ def create_stripe_customer(event, context):
         phone=customer_phone,
         name=customer_name
     )
-    breakpoint()
     output_object = {
         "stripe_customer_id": stripe_customer['id'],
-        "roofer_id": customer_roofer_id
+        "roofer_id": customer_roofer_id,
+        "name": customer_name,
+        "phone": customer_phone
     }
     
     return output_object

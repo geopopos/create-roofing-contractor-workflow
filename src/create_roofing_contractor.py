@@ -2,11 +2,13 @@ import json, requests, os
 
 ppl_api_url ="https://e6b1hc9rfg.execute-api.us-east-1.amazonaws.com"
 
-if os.environ.get('IS_OFFLINE'):
+if os.environ.get('IS_LOCAL') == 'true':
     ppl_api_url = "http://localhost:2000"
 
 
 def create_roofing_contractor(event, context):
+    print(os.environ.get('IS_LOCAL'))
+    print(ppl_api_url)
     email = event.get('email')
     first_name = event.get('first_name') 
     last_name = event.get('last_name')
@@ -22,5 +24,4 @@ def create_roofing_contractor(event, context):
         'Content-Type': "application/json",
     }
     response = requests.request("POST", url, data=json.dumps(payload), headers=headers)
-    print(response.text)
     return json.loads(response.text)
