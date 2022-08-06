@@ -67,9 +67,10 @@ plugins:
 	
 stepFunctions:
   stateMachines:
-    create-new-business:
+    createNewBusiness:
+      name: create-business-workflow
       events:
         - http:
             path: create_roofer 
             method: POST
-      definition: ${file(./workflow.json.asl)}
+      definition: ${file(workflow.json.asl)}
