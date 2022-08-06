@@ -38,5 +38,5 @@ def check_if_stripe_customer_exists(event, context):
             'email': customer_email,
             'phone': event.get('phone'),
             'name': event.get('name'),
-            'roofer_id': event.get('roofer_id')
+            'roofer_id': event.get('pk')
         }
