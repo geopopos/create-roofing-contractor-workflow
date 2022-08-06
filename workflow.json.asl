@@ -84,7 +84,7 @@
         },
         "CreateStripeCustomer": {
             "Type": "Task",
-            "Resource": "arn:aws:lambda:us-east-1:906360379090:function:create-stripe-customer-dev-createStripeCustomer",
+            "Resource": "arn:aws:lambda:us-east-1:906360379090:function:new-roofing-contractor-workflow-dev-create_stripe_customer",
             "Retry": [
                 {
                     "ErrorEquals": ["CustomError"],
@@ -108,11 +108,53 @@
             "Next": "AddStripeIdToRooferRecord" 
         },
         "AddStripeIdToRooferRecord": {
-            "Type": "Pass",
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:us-east-1:906360379090:function:new-roofing-contractor-workflow-dev-add_stripe_customer_dynamo",
+            "Retry": [
+                {
+                    "ErrorEquals": ["CustomError"],
+                    "IntervalSeconds": 1,
+                    "MaxAttempts": 2,
+                    "BackoffRate": 2.0
+                },
+                {
+                    "ErrorEquals": ["States.TaskFailed"],
+                    "IntervalSeconds": 30,
+                    "MaxAttempts": 2,
+                    "BackoffRate": 2.0
+                },
+                {
+                    "ErrorEquals": ["States.ALL"],
+                    "IntervalSeconds": 5,
+                    "MaxAttempts": 5,
+                    "BackoffRate": 2.0
+                }
+            ],
             "Next": "SendMessagePublicChannel"
         },
         "SendMessagePublicChannel": {
-            "Type": "Pass",
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:us-east-1:906360379090:function:new-roofing-contractor-workflow-dev-send_slack_message",
+            "Retry": [
+                {
+                    "ErrorEquals": ["CustomError"],
+                    "IntervalSeconds": 1,
+                    "MaxAttempts": 2,
+                    "BackoffRate": 2.0
+                },
+                {
+                    "ErrorEquals": ["States.TaskFailed"],
+                    "IntervalSeconds": 30,
+                    "MaxAttempts": 2,
+                    "BackoffRate": 2.0
+                },
+                {
+                    "ErrorEquals": ["States.ALL"],
+                    "IntervalSeconds": 5,
+                    "MaxAttempts": 5,
+                    "BackoffRate": 2.0
+                }
+            ],
             "End": true
         }
     }
