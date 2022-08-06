@@ -62,3 +62,14 @@ constructs:
 plugins:
   - serverless-lift
   - serverless-python-requirements
+  - serverless-step-functions
+
+	
+stepFunctions:
+  stateMachines:
+    create-new-business:
+      events:
+        - http:
+            path: create_roofer 
+            method: POST
+      definition: ${file(./workflow.json.asl)}
