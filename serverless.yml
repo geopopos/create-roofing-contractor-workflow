@@ -14,7 +14,6 @@ provider:
   environment:
     REGION_NAME: ${self:provider.region}
     SQS_QUEUE_URL: https://sqs.us-east-1.amazonaws.com/906360379090/${self:service}-${self:provider.stage}-create-business-queue
-    WORKFLOW_FILE: ${file(workflow.json.asl)}
   iam:
     role:
       statements:
