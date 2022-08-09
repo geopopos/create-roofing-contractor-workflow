@@ -1,13 +1,9 @@
 import json, stripe, requests, os
 
-# uncomment the following line to run in production with live stripe key
-# stripe_api_key = os.environ.get('STRIPE_API_KEY')
-# 
-# if os.environ.get('IS_OFFLINE'):
-#     stripe_api_key = os.environ.get('STRIPE_TEST_API_KEY')
-# 
+stripe_api_key = os.environ.get('STRIPE_API_KEY')
 
-stripe_api_key = os.environ.get('STRIPE_TEST_API_KEY')
+if os.environ.get('IS_LOCAL') or os.environ.get('STAGE') == 'dev':
+    stripe_api_key = os.environ.get('STRIPE_TEST_API_KEY')
 
 def create_stripe_customer(event, context):
     print(event)
